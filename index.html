@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>时钟</title>
+    <style>
+        ul,li{margin: 0;padding: 0;list-style-type: none;}
+        #box{width: 200px;height: 200px;border: 5px solid #131315;margin: 100px auto;background:#E1DFF4;border-radius: 50%;position: relative;}
+        #clock{position: relative;width: 200px;height: 200px;}
+        li{width: 2px;height: 10px; background: #131315;top: 0;left: 99px;position: absolute;transform-origin: center 100px;}
+        li:nth-child(5n+1){width: 4px; height: 14px; background: #131315}
+        .circle{width: 10px;height: 10px;background: #131315;border-radius: 50%;position:absolute;left: 95px;top: 95px;}
+        .hours{width: 6px;height: 50px; background: #131315;position: absolute;left: 97px;bottom: 100px;
+        transform-origin:3px 50px;}
+        .minutes{width: 4px;height: 60px; background: rosybrown;position: absolute;left: 98px;bottom: 100px;transform-origin:
+        2px bottom;}
+        .seconds{width: 2px;height: 70px; background: #FB2934;position: absolute;left: 99px;bottom: 100px;
+        transform-origin:1px bottom;}
+    </style>
+</head>
+<body>
+<div id="box">
+    <ul id="clock">
+    </ul>
+    <div class="circle"></div>
+    <div class="hours"></div>
+    <div class="minutes"></div>
+    <div class="seconds"></div>
+</div>
+<script>
+!function(){
+    var hour = document.querySelector(".hours")
+    var minute = document.querySelector(".minutes")
+    var second = document.querySelector(".seconds")
+    var str = ""
+    for(var i = 0; i < 60; i++){
+        str += '<li style="transform: rotate('+ (i*6) + 'deg)"></li>'
+    }
+    clock.innerHTML = str
+    setInterval(function(){
+        var date = new Date()
+        var seconds = date.getSeconds()
+        var minutes = date.getMinutes() + seconds/60
+        var hours = date.getHours() + minutes/60
+        second.style.transform = "rotate(" + seconds*6 + "deg)"
+        minute.style.transform = "rotate(" + minutes*6 + "deg)"
+        hour.style.transform = "rotate(" + hours*30 + "deg)"
+    },1000)
+}.call()
+</script>
+</body>
+</html>
